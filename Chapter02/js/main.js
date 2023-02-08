@@ -1,10 +1,16 @@
-//initialize function called when script loads
+// Add all scripts to the JS folder
+var mydiv = document.getElementById("mydiv");
+mydiv.addEventListener("click", function(){
+    alert("Hello World!");
+});
+//initialize function called when the script loads
 function initialize(){
     cities();
 };
 
 //function to create a table with cities and their populations
 function cities(){
+    //define two arrays for cities and population
     var cities = [
         'Madison',
         'Milwaukee',
@@ -18,35 +24,23 @@ function cities(){
         27244
     ];
 
-    var citysize = [
-        'Medium',
-        'Large',
-        'Medium',
-        'Small'
-    ]
-
-    //create a table element
+    //create the table element
     var table = document.createElement("table");
 
     //create a header row
     var headerRow = document.createElement("tr");
-q
-    //add city column to header row
+
+    //add the "City" column
     var cityHeader = document.createElement("th");
     cityHeader.innerHTML = "City";
     headerRow.appendChild(cityHeader);
 
-    //add population column to header row
+    //add the "Population" column
     var popHeader = document.createElement("th");
     popHeader.innerHTML = "Population";
     headerRow.appendChild(popHeader);
 
-    //add citysize column to header row
-    var sizeHeader = document.createElement("th");
-    sizeHeader.innerHTML = "City Size";
-    headerRow.appendChild(sizeHeader);
-
-    //add the header row
+    //add the row to the table
     table.appendChild(headerRow);
 
     //loop to add a new row for each city
@@ -61,16 +55,13 @@ q
         pop.innerHTML = population[i];
         tr.appendChild(pop);
 
-        var size = document.createElement("td");
-        size.innerHTML = citysize[i];
-        tr.appendChild(size);
-
         table.appendChild(tr);
     };
 
     //add the table to the div in index.html
-    var mydiv = document.getElementById("mydiv");
-    mydiv.appendChild(table);
+    var myDiv =  document.getElementById("mydiv");
+    myDiv.appendChild(table);
 };
 
+//call the initialize function when the window has loaded
 window.onload = initialize();
