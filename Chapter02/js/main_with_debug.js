@@ -1,12 +1,12 @@
 // Add all scripts to the JS folder
 var mydiv = document.getElementById("mydiv");
-mydiv.addEventListener("click", function(){
-    alert("Hey you clicked me!");
-});
+
 //initialize function called when the script loads
 function initialize(){
     cities();
     addEvents();
+    addColumns();
+
 };
 
 //function to create a table with cities and their populations
@@ -49,9 +49,9 @@ function cities(){
     headerRow.appendChild(popHeader);
 
     //add the "City Size" column
-    var sizeHeader = document.createElement("th");
+    /*var sizeHeader = document.createElement("th");
     sizeHeader.innerHTML = "City Size";
-    headerRow.appendChild(sizeHeader);
+    headerRow.appendChild(sizeHeader);*/
 
     //add the row to the table
     table.appendChild(headerRow);
@@ -68,9 +68,9 @@ function cities(){
         pop.innerHTML = population[i];
         tr.appendChild(pop);
 
-        var size = document.createElement("td");
+        /*var size = document.createElement("td");
         size.innerHTML = citysize[i];
-        tr.appendChild(size);
+        tr.appendChild(size);*/
 
         table.appendChild(tr);
     };
@@ -83,6 +83,9 @@ function cities(){
 //call the initialize function when the window has loaded
 window.onload = initialize();
 
+
+function addColumns(){
+    
 //define a list city and population
 var cityPop = [
 	{ 
@@ -102,37 +105,34 @@ var cityPop = [
 		population: 27244
 	}
 ];
-
-function addColumns(cityPop){
-    
     document.querySelectorAll("tr").forEach(function(row, i){
 
     	if (i == 0){
-
-    		row.insertAdjacntHTML('beforeend', '<th>City Size</th>');
+    		row.insertAdjacentHTML('beforeend', '<th>City Size</th>');
     	} else {
 
     		var citySize;
-
     		if (cityPop[i-1].population < 100000){
     			citySize = 'Small';
 
     		} else if (cityPop[i-1].population < 500000){
-    			citysize = 'Medium';
+    			citySize = 'Medium';
 
     		} else {
     			citySize = 'Large';
     		};
-
-			row.insertAdjacntHTML = '<td' + citySize + '</td>';
+            //console.log(citySize)
+            row.insertAdjacentHTML('beforeend', '<td>' + citySize + '</td>');
     	};
     });
 };
 
 function addEvents(){
 
-	document.querySelector("table").addEventListener("mouseover", clickme);
+	document.querySelector("table").addEventListener("mouseover", changeColor);
 		//rgb(56,78,85)
+        function changeColor(){
+
 		var color = "rgb(";
 
 		for (var i=0; i<3; i++){
@@ -150,6 +150,7 @@ function addEvents(){
 
 		document.querySelector("table").style.color = color;
 	};
+};
 
 	function clickme(){
 
@@ -157,4 +158,5 @@ function addEvents(){
 	};
 
 	document.querySelector("table").addEventListener("click", clickme);
+    // window.onload = initialize();
 }
