@@ -1,11 +1,12 @@
 // Add all scripts to the JS folder
 var mydiv = document.getElementById("mydiv");
 mydiv.addEventListener("click", function(){
-    alert("Hello World!");
+    alert("Hey you clicked me!");
 });
 //initialize function called when the script loads
 function initialize(){
     cities();
+    addEvents();
 };
 
 //function to create a table with cities and their populations
@@ -23,6 +24,7 @@ function cities(){
         104057,
         27244
     ];
+    //define an additional array for cieysize
     var citysize = [
         'Medium',
         'Large',
@@ -81,6 +83,7 @@ function cities(){
 //call the initialize function when the window has loaded
 window.onload = initialize();
 
+//define a list city and population
 var cityPop = [
 	{ 
 		city: 'Madison',
@@ -129,14 +132,14 @@ function addColumns(cityPop){
 function addEvents(){
 
 	document.querySelector("table").addEventListener("mouseover", clickme);
-		
-		var color = "rgb";
+		//rgb(56,78,85)
+		var color = "rgb(";
 
 		for (var i=0; i<3; i++){
 
 			var random = Math.round(Math.random() * 255);
 
-			color += "random";
+			color += random;
 
 			if (i<2){
 				color += ",";
@@ -145,7 +148,7 @@ function addEvents(){
 				color += ")";
 		};
 
-		document.querySelector("table").color = color;
+		document.querySelector("table").style.color = color;
 	};
 
 	function clickme(){
