@@ -165,16 +165,29 @@ function debugCallback(response){
 	document.querySelector("#mydiv").insertAdjacentHTML('beforeend', 'GeoJSON data: ' + JSON.stringify(myData))
 };
 
+// function debugAjax(){
+	
+// 	var myData;
+	
+// 	fetch("data/map.geojson")
+// 		.then(function(response){
+// 			debugCallback(response);
+// 		})
+
+// 	document.querySelector("#mydiv").insertAdjacentHTML('beforeend', 'GeoJSON data:' + JSON.stringify(myData));
+// };
 function debugAjax(){
 	
 	var myData;
 	
-	fetch("data/MegaCities.geojson")
+	fetch("data/map.geojson")
 		.then(function(response){
-			debugCallback(response);
+			return response.json();
 		})
-
-	document.querySelector("#mydiv").insertAdjacentHTML('beforeend', 'GeoJSON data:' + JSON.stringify(myData))
+        .then(function(response){
+            myData = response;
+        })
+    console.log(myData);
+	document.querySelector("#mydiv").insertAdjacentHTML('beforeend', 'GeoJSON data:' + JSON.stringify(myData));
 };
-
-document.querySelector("#mydiv").insertAdjacentHTML('beforeend', 'GeoJSON data: ' + JSON.stringify(myData))
+debugAjax();
