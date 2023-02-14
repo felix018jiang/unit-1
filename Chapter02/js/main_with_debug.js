@@ -160,3 +160,21 @@ function addEvents(){
 	document.querySelector("table").addEventListener("click", clickme);
     // window.onload = initialize();
 }
+
+function debugCallback(response){
+	document.querySelector("#mydiv").insertAdjacentHTML('beforeend', 'GeoJSON data: ' + JSON.stringify(myData))
+};
+
+function debugAjax(){
+	
+	var myData;
+	
+	fetch("data/MegaCities.geojson")
+		.then(function(response){
+			debugCallback(response);
+		})
+
+	document.querySelector("#mydiv").insertAdjacentHTML('beforeend', 'GeoJSON data:' + JSON.stringify(myData))
+};
+
+document.querySelector("#mydiv").insertAdjacentHTML('beforeend', 'GeoJSON data: ' + JSON.stringify(myData))
